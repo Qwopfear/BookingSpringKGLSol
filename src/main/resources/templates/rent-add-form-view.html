@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h2> Add new Rent  </h2>
+
+<form action="#" th:action="@{/api/rent/add}" method="post" th:object="${Rentable}">
+    Name <label><input th:field="*{name}" type="text"></label>
+    <br>
+    Description <label><input th:field="*{description}" type="text"></label>
+    <br>
+    Price <label><input th:field="*{price}" type="text"></label>
+    <br>
+    Area <label><input th:field="*{area}" type="text"></label>
+    <br>
+    <button>add</button>
+</form>
+<br>
+<span th:text="${addingResponse}" ></span>
+<br>
+<a th:href="@{/}">Back to main page</a>
+</body>
+</html>

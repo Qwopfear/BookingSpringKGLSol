@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form  action="#" th:action="@{/api/reservation/{id}/update(id=${Reservation.getId()})}" th:method="put" th:object="${Reservation}" >
+
+    <label>
+        <div>
+            <span> Client </span>
+            <select th:name="client_id">
+                <option th:each="client  : ${Clients}" th:text="${client.name}" th:value="${client.id}"></option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <span> Rentable </span>
+            <select th:name="rent_id">
+                <option th:each="rent  : ${RentableObjs}" th:text="${rent.name}" th:value="${rent.id}"></option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="reservation-start-date">Date of rent start:</label>
+            <input type="date"  th:name="from" th:field="${Reservation.rentStart}" id="reservation-start-date"/>
+        </div>
+        <br>
+        <div>
+            <label for="reservation-end-date">Date of rent end:</label>
+            <input type="date" th:name="to"  th:field="${Reservation.rentEnd}" id="reservation-end-date"/>
+        </div>
+    </label>
+    <br>
+    <input type="submit" value="Update"/>
+</form>
+<span th:text="${updateResponse}" ></span>
+<a th:href="@{/}">Back to main page</a>
+
+</body>
+</html>

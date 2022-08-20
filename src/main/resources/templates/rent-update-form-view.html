@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<h2>Update client</h2>
+
+<form th:action="@{/api/rent/{id}/update(id=${Rentable.getId()})}" th:method="PATCH"  th:object="${Rentable}">
+    New Name <label><input th:field="*{name}" type="text"></label>
+    <br>
+    New Description <label><input th:field="*{description}" type="text"></label>
+    <br>
+    New Price <label><input th:field="*{price}" type="text"></label>
+    <br>
+    New Area <label><input th:field="*{area}" type="text"></label>
+    <br>
+    <input type="submit"  value="Update"/>
+</form>
+<br>
+<span th:text="${updateResponse}" ></span>
+<br>
+<a th:href="@{/}">Back to main page</a>
+</body>
+</html>
