@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.Optional;
 
 @RestController()
 @RequestMapping("api/clients")
@@ -94,6 +95,11 @@ public class ClientController {
     @GetMapping("/all")
     private Iterable<Client> getAllClients(){
         return clientService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    private Optional<Client> getAllClients(@PathVariable Long id){
+        return clientService.findById(id);
     }
 
 }

@@ -75,7 +75,7 @@ public class ReservationController {
     @GetMapping("/{id}/update")
     private ModelAndView updateClientForm(@PathVariable (name = "id") Long id){
         ModelAndView reservationUpdateForm = new ModelAndView("reservation-update-form-view");
-        Reservation reservation = reservationService.findById(id).orElseThrow();
+        Reservation reservation = reservationService.findById(id).get();
         reservationUpdateForm.addObject("Reservation",reservation);
         reservationUpdateForm.addObject("Clients", clientService.findAll());
         reservationUpdateForm.addObject("RentableObjs", rentableService.findAll());
@@ -95,8 +95,8 @@ public class ReservationController {
         String updateResponse = "Reservation was successfully updated";
 
         try {
-            reservationService.save(clientService.findById(clientId).orElseThrow(),
-                    rentableService.findById(rentId).orElseThrow(),from,to,reservation);
+            reservationService.save(clientService.findById(clientId).get(),
+                    rentableService.findById(rentId).get(),from,to,reservation);
 
         } catch (ReservationIllegalException e) {
             updateResponse = e.getMessage();
@@ -109,6 +109,12 @@ public class ReservationController {
         updateReservationForm.addObject("updateResponse", updateResponse);
 
         return updateReservationForm;
+    }
+    @DeleteMapping("/{id}")
+    private ModelAndView deleteClient(@PathVariable (name = "id") Long id){
+        reservationService.deleteById(id);
+        return new ModelAndView("redirect:/");
+
     }
 
 }

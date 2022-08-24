@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/rent")
@@ -85,7 +86,6 @@ public class RentableController {
     private ModelAndView deleteClient(@PathVariable (name = "id") Long id){
         rentableService.deleteById(id);
         return new ModelAndView("redirect:/");
-
     }
 
     @GetMapping("/{id}/reservations")
@@ -99,5 +99,10 @@ public class RentableController {
     @GetMapping("/all")
     private Iterable<Rentable> getAll(){
         return rentableService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    private Optional<Rentable> getRentable(@PathVariable Long id){
+        return rentableService.findById(id);
     }
 }

@@ -90,7 +90,7 @@
             <form action="#" th:action="@{/api/reservation/{id}/update(id=${res.getId()})}" method="get">
                 <button>update</button>
             </form>
-            <form action="#" th:action="@{/api/reservation/{id}/delete(id=${res.getId()})}" th:method="delete">
+            <form action="#" th:action="@{/api/reservation/{id}(id=${res.getId()})}" th:method="delete">
                 <button>Delete</button>
             </form>
         </td>

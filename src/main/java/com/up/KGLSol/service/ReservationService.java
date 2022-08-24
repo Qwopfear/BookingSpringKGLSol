@@ -18,4 +18,6 @@ public interface ReservationService {
     Reservation save(Reservation reservation) throws ReservationIllegalException, ParseException;
 
     Reservation save(Client client, Rentable rentable, String from, String to, Reservation reservation) throws ParseException, ReservationIllegalException;
+
+    void deleteById(Long id);
 }

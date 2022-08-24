@@ -47,4 +47,9 @@ public class ReservationServiceImpl implements ReservationService{
         reservation.checkReservationAllow(rentable.getReservations());
         return reservationRepository.save(reservation);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        reservationRepository.deleteById(id);
+    }
 }
