@@ -1,4 +1,9 @@
 ﻿# BookingSpringKGLSol
+ 
+ Bardziej czytelny ReadMe 
+ 
+ 
+ 
  curl for this app: 
 Post : 
   curl --data "name=name" http://namelocalhost:8080/api/clients/add?
