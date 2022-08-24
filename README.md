@@ -1,6 +1,6 @@
 ﻿# BookingSpringKGLSol
  
- Bardziej czytelny ReadMe 
+ Bardziej czytelny ReadMe : https://raw.githubusercontent.com/Qwopfear/BookingSpringKGLSol/main/README.md
  
  
  
