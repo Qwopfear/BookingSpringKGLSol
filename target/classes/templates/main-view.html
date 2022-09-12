@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+
+<table id="client-wrapper" th:border="2" style="width:500px">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Actions</td>
+    </tr>
+    <tr th:each="client: ${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.name}"></td>
+        <td>
+            <form th:method="get" th:action="@{api/clients/{id}/update(id=${client.getId()})}">
+                <input type="submit" value="Update"/>
+            </form>
+            <form th:method="delete" th:action="@{api/clients/{id}(id=${client.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+            <form th:method="get" th:action="@{api/clients/{id}/reservations(id=${client.getId()})}">
+                <input type="submit" value="ShowReservations"/>
+            </form>
+        </td>
+        <br>
+    </tr>
+</table>
+<form action="#" th:action="@{/api/clients/add}" method="get">
+    <button>add client</button>
+</form>
+
+
+<table th:border="2" style="width:500px">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Desc</td>
+        <td>Price</td>
+        <td>Area</td>
+        <td>Actions</td>
+    </tr>
+    <tr th:each="rent: ${rentable}">
+        <td th:text="${rent.id}"/>
+        <td th:text="${rent.name}"/>
+        <td th:text="${rent.description}"/>
+        <td th:text="${rent.getPrice()}"/>
+        <td th:text="${rent.getArea()}"/>
+        <td>
+            <form action="#" th:action="@{/api/rent/{id}/update(id=${rent.getId()})}" method="get">
+                <button>update</button>
+            </form>
+            <form action="#" th:action="@{/api/rent/{id}(id=${rent.getId()})}" th:method="delete">
+                <button>Delete</button>
+            </form>
+            <form th:method="get" th:action="@{api/rent/{id}/reservations(id=${rent.getId()})}">
+                <input type="submit" value="ShowReservations"/>
+            </form>
+        </td>
+        <br>
+        <br>
+    </tr>
+</table>
+<form action="#" th:action="@{/api/rent/add}" method="get">
+    <button>add rentable object</button>
+</form>
+
+
+<table th:border="2" style="width:500px">
+    <tr>
+        <td>Id</td>
+        <td>Client</td>
+        <td>Rent_Id</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Actions</td>
+        >
+
+    </tr>
+    <tr th:each="res: ${reservation}">
+        <td th:text="${res.getId()}"/>
+        <td th:text="${res.getClient().getName()}"/>
+        <td th:text="${res.getRentable().getName()}"/>
+        <td th:text="${res.parseDateToString(res.getRentStart())}"/>
+        <td th:text="${res.parseDateToString(res.getRentEnd())}"/>
+        <td>
+            <form action="#" th:action="@{/api/reservation/{id}/update(id=${res.getId()})}" method="get">
+                <button>update</button>
+            </form>
+            <form action="#" th:action="@{/api/reservation/{id}(id=${res.getId()})}" th:method="delete">
+                <button>Delete</button>
+            </form>
+        </td>
+        <br>
+        <br>
+    </tr>
+</table>
+
+<form action="#" th:action="@{/api/reservation/add}" method="get">
+    <button>add new reservation</button>
+</form>
+</body>
+</html>

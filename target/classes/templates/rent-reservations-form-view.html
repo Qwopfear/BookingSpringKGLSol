@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <span>Reservations for :</span>
+    <span  th:text="${Rentable.name}"> </span>
+</div>
+<table th:border="2"  style="width:500px">
+    <tr>
+        <td>Client</td>
+        <td>From</td>
+        <td>To</td>
+    </tr>
+    <tr th:each="res: ${Rentable.getReservations()}">
+        <td th:text="${res.getClient().getName()}" />
+        <td th:text="${res.parseDateToString(res.getRentStart())}" />
+        <td th:text="${res.parseDateToString(res.getRentEnd())}" />
+    </tr>
+</table>
+<a th:href="@{/}">Back to main page</a>
+
+</body>
+</html>

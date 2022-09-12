@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h2> Add new client  </h2>
+
+<form action="#" th:action="@{/api/clients/add}" method="post" th:object="${Client}">
+    Name <label><input th:field="*{name}" type="text"></label>
+    <button>add</button>
+</form>
+<br>
+<span th:text="${addingResponse}" ></span>
+<br>
+<a th:href="@{/}">Back to main page</a>
+</body>
+</html>
